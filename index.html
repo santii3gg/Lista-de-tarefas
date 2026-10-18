@@ -1,11 +1,9 @@
-```html
 <!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Foco — Lista de Tarefas</title>
-
 <style>
 * {
     margin: 0;
@@ -13,14 +11,12 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', sans-serif;
 }
-
 body {
     min-height: 100vh;
     padding: 25px 15px;
     background: linear-gradient(135deg, #101426, #292044);
     color: white;
 }
-
 .container {
     max-width: 650px;
     margin: 30px auto;
@@ -30,34 +26,28 @@ body {
     border-radius: 22px;
     box-shadow: 0 15px 45px #0005;
 }
-
 h1 {
     text-align: center;
     font-size: 2.5rem;
 }
-
 .subtitle {
     color: #aaaec7;
     text-align: center;
     margin: 8px 0 25px;
 }
-
 h2 {
     font-size: 1.1rem;
     margin: 22px 0 12px;
 }
-
 label {
     display: block;
     margin: 12px 0 7px;
     color: #c4c8dc;
     font-size: .9rem;
 }
-
 input, button {
     font: inherit;
 }
-
 input[type="text"],
 input[type="time"] {
     width: 100%;
@@ -68,11 +58,9 @@ input[type="time"] {
     color: white;
     outline: none;
 }
-
 input:focus {
     border-color: #9b83ff;
 }
-
 button {
     border: none;
     border-radius: 10px;
@@ -80,11 +68,9 @@ button {
     cursor: pointer;
     transition: .2s;
 }
-
 button:hover {
     filter: brightness(1.13);
 }
-
 .add-btn {
     width: 100%;
     margin-top: 13px;
@@ -92,47 +78,39 @@ button:hover {
     color: white;
     font-weight: bold;
 }
-
 .notify-btn {
     width: 100%;
     background: #243e3c;
     border: 1px solid #39766c;
     color: #70e6c4;
 }
-
 .notify-status {
     color: #aab2cb;
     font-size: .85rem;
     line-height: 1.5;
     margin-top: 10px;
 }
-
 .form {
     padding-bottom: 20px;
     border-bottom: 1px solid #383e57;
 }
-
 .filters {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
     margin-bottom: 17px;
 }
-
 .filter-btn {
     background: #292f49;
     color: #c5c8dc;
 }
-
 .filter-btn.active {
     background: #8b70f5;
     color: white;
 }
-
 #task-list {
     list-style: none;
 }
-
 .task {
     display: flex;
     align-items: flex-start;
@@ -143,7 +121,6 @@ button:hover {
     border: 1px solid #343a54;
     border-radius: 12px;
 }
-
 .task-check {
     width: 19px;
     height: 19px;
@@ -152,22 +129,18 @@ button:hover {
     flex-shrink: 0;
     cursor: pointer;
 }
-
 .task-content {
     flex: 1;
     min-width: 0;
     overflow-wrap: anywhere;
 }
-
 .task.done .task-name {
     text-decoration: line-through;
     color: #858ba5;
 }
-
 .task-name {
     line-height: 1.45;
 }
-
 .reminder-info {
     display: block;
     color: #a9b1cb;
@@ -175,21 +148,18 @@ button:hover {
     margin-top: 7px;
     line-height: 1.5;
 }
-
 .delete-btn {
     padding: 7px 10px;
     background: #473044;
     color: #ff8797;
     flex-shrink: 0;
 }
-
 .empty {
     text-align: center;
     padding: 25px 5px;
     color: #9299b5;
     line-height: 1.7;
 }
-
 .stats {
     display: flex;
     justify-content: space-between;
@@ -201,14 +171,12 @@ button:hover {
     color: #b4bad2;
     font-size: .85rem;
 }
-
 .clear-btn {
     width: 100%;
     margin-top: 15px;
     background: #34304d;
     color: #d2c7ff;
 }
-
 #toast {
     display: none;
     position: fixed;
@@ -225,47 +193,36 @@ button:hover {
     z-index: 10;
     line-height: 1.5;
 }
-
 #toast.show {
     display: block;
 }
-
 @media (max-width: 480px) {
     .container {
         padding: 19px;
         margin: 10px auto;
     }
-
     h1 {
         font-size: 2.1rem;
     }
-
     .stats {
         font-size: .78rem;
     }
 }
 </style>
 </head>
-
 <body>
-
 <main class="container">
-
     <h1>✦ Foco</h1>
     <p class="subtitle">Organiza o teu dia, uma tarefa de cada vez.</p>
-
     <button class="notify-btn" id="notify-button">
         🔔 Ativar notificações do navegador
     </button>
-
     <p class="notify-status" id="notify-status" aria-live="polite">
         Ativa as notificações para receberes avisos do navegador.
         Os lembretes funcionam enquanto esta página estiver aberta.
     </p>
-
     <form class="form" id="task-form">
         <h2>➕ Nova tarefa</h2>
-
         <label for="task-input">O que precisas de fazer?</label>
         <input
             type="text"
@@ -274,17 +231,13 @@ button:hover {
             placeholder="Ex.: Estudar matemática"
             required
         >
-
         <label for="reminder-time">Hora do lembrete (opcional)</label>
         <input type="time" id="reminder-time">
-
         <button class="add-btn" type="submit">
             + Adicionar tarefa
         </button>
     </form>
-
     <h2>📋 As minhas tarefas</h2>
-
     <div class="filters">
         <button class="filter-btn active" data-filter="all" type="button">
             Todas
@@ -296,29 +249,22 @@ button:hover {
             Concluídas
         </button>
     </div>
-
     <ul id="task-list"></ul>
-
     <div class="empty" id="empty">
         ✨<br>
         Ainda não tens tarefas.<br>
         Adiciona a tua primeira tarefa!
     </div>
-
     <div class="stats">
         <span>Total: <strong id="total">0</strong></span>
         <span>Pendentes: <strong id="pending">0</strong></span>
         <span>Concluídas: <strong id="completed">0</strong></span>
     </div>
-
     <button class="clear-btn" id="clear-done" type="button">
         Limpar tarefas concluídas
     </button>
-
 </main>
-
 <div id="toast" role="status" aria-live="polite"></div>
-
 <script>
 const form = document.getElementById("task-form");
 const input = document.getElementById("task-input");
@@ -328,11 +274,9 @@ const empty = document.getElementById("empty");
 const toast = document.getElementById("toast");
 const notifyButton = document.getElementById("notify-button");
 const notifyStatus = document.getElementById("notify-status");
-
 let tasks = [];
 let filter = "all";
 let toastTimer;
-
 try {
     const saved = JSON.parse(localStorage.getItem("foco-tasks") || "[]");
     if (Array.isArray(saved)) {
@@ -345,14 +289,12 @@ try {
 } catch {
     tasks = [];
 }
-
 // Garante que tarefas antigas têm os campos necessários.
 tasks.forEach(task => {
     if (!task.id) task.id = String(Date.now() + Math.random());
     if (typeof task.remindAt !== "number") task.remindAt = null;
     if (typeof task.notified !== "boolean") task.notified = false;
 });
-
 function saveTasks() {
     try {
         localStorage.setItem("foco-tasks", JSON.stringify(tasks));
@@ -360,34 +302,26 @@ function saveTasks() {
         showToast("Não foi possível guardar as tarefas no navegador.");
     }
 }
-
 function showToast(message) {
     toast.textContent = message;
     toast.classList.add("show");
-
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
         toast.classList.remove("show");
     }, 8000);
 }
-
 function getReminderDate(time) {
     const parts = time.split(":").map(Number);
     const date = new Date();
-
     date.setHours(parts[0], parts[1], 0, 0);
-
     // Se a hora já passou, o lembrete fica para amanhã.
     if (date.getTime() <= Date.now()) {
         date.setDate(date.getDate() + 1);
     }
-
     return date.getTime();
 }
-
 function formatReminder(timestamp) {
     if (!timestamp) return "";
-
     return new Intl.DateTimeFormat("pt-PT", {
         day: "2-digit",
         month: "2-digit",
@@ -395,22 +329,22 @@ function formatReminder(timestamp) {
         minute: "2-digit"
     }).format(new Date(timestamp));
 }
-
 function sendReminder(task) {
-    const message = "Está na hora de: " + task.text;
+    const when = task.remindAt ? formatReminder(task.remindAt) : "";
+    const message = when
+        ? "Está na hora de: " + task.text + " (" + when + ")"
+        : "Está na hora de: " + task.text;
 
-    // Aviso dentro do site.
+    // Aviso dentro do site
     showToast("🔔 Lembrete: " + message);
 
-    // Notificação do sistema operativo/navegador, se permitida.
-    if ("Notification" in window &&
-        Notification.permission === "granted") {
+    // Notificação do navegador
+    if ("Notification" in window && Notification.permission === "granted") {
         try {
             const notification = new Notification("Foco — Lembrete", {
                 body: message,
                 tag: "foco-" + task.id
             });
-
             notification.onclick = () => {
                 window.focus();
                 notification.close();
@@ -420,11 +354,9 @@ function sendReminder(task) {
         }
     }
 }
-
 function checkReminders() {
     const now = Date.now();
     let changed = false;
-
     tasks.forEach(task => {
         if (
             !task.done &&
@@ -437,35 +369,28 @@ function checkReminders() {
             sendReminder(task);
         }
     });
-
     if (changed) saveTasks();
 }
-
 async function requestNotifications() {
     if (!("Notification" in window)) {
         notifyStatus.textContent =
             "Este navegador não suporta notificações. Os avisos dentro do site continuam disponíveis.";
         return;
     }
-
     if (!window.isSecureContext) {
         notifyStatus.textContent =
             "Para ativar as notificações do navegador, abre o site através de HTTPS ou de localhost.";
         return;
     }
-
     try {
         let permission = Notification.permission;
-
         if (permission === "default") {
             permission = await Notification.requestPermission();
         }
-
         if (permission === "granted") {
             notifyStatus.textContent =
                 "✅ Notificações permitidas! Os lembretes são verificados enquanto a página está aberta.";
             notifyButton.textContent = "🔔 Notificações ativadas";
-
             new Notification("Foco", {
                 body: "As notificações estão prontas!"
             });
@@ -481,21 +406,15 @@ async function requestNotifications() {
             "Não foi possível ativar as notificações neste navegador.";
     }
 }
-
 notifyButton.addEventListener("click", requestNotifications);
-
 form.addEventListener("submit", event => {
     event.preventDefault();
-
     const text = input.value.trim();
     if (!text) return;
-
     let remindAt = null;
-
     if (timeInput.value) {
         remindAt = getReminderDate(timeInput.value);
     }
-
     tasks.unshift({
         id: (crypto.randomUUID
             ? crypto.randomUUID()
@@ -505,33 +424,26 @@ form.addEventListener("submit", event => {
         remindAt,
         notified: false
     });
-
     saveTasks();
     renderTasks();
-
     if (remindAt) {
         showToast(
             "⏰ Lembrete definido para " +
             formatReminder(remindAt) + "."
         );
     }
-
     input.value = "";
     timeInput.value = "";
     input.focus();
 });
-
 function renderTasks() {
     list.replaceChildren();
-
     const visibleTasks = tasks.filter(task => {
         if (filter === "pending") return !task.done;
         if (filter === "done") return task.done;
         return true;
     });
-
     empty.style.display = visibleTasks.length ? "none" : "block";
-
     if (!visibleTasks.length) {
         if (filter === "done") {
             empty.innerHTML = "🌟<br>Ainda não há tarefas concluídas.";
@@ -542,37 +454,29 @@ function renderTasks() {
                 "✨<br>Ainda não tens tarefas.<br>Adiciona a tua primeira tarefa!";
         }
     }
-
     visibleTasks.forEach(task => {
         const li = document.createElement("li");
         li.className = "task" + (task.done ? " done" : "");
-
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.className = "task-check";
         checkbox.checked = task.done;
         checkbox.setAttribute("aria-label", "Concluir tarefa");
-
         checkbox.addEventListener("change", () => {
             task.done = checkbox.checked;
-
             // Evita que uma tarefa concluída dispare o lembrete.
             if (task.done) {
                 task.remindAt = null;
             }
-
             saveTasks();
             renderTasks();
         });
-
         const content = document.createElement("div");
         content.className = "task-content";
-
         const name = document.createElement("div");
         name.className = "task-name";
         name.textContent = task.text;
         content.appendChild(name);
-
         if (task.remindAt && !task.done) {
             const info = document.createElement("span");
             info.className = "reminder-info";
@@ -586,55 +490,43 @@ function renderTasks() {
             info.textContent = "✅ Concluída";
             content.appendChild(info);
         }
-
         const del = document.createElement("button");
         del.className = "delete-btn";
         del.type = "button";
         del.textContent = "✕";
         del.setAttribute("aria-label", "Apagar tarefa");
-
         del.addEventListener("click", () => {
             tasks = tasks.filter(item => item.id !== task.id);
             saveTasks();
             renderTasks();
         });
-
         li.append(checkbox, content, del);
         list.appendChild(li);
     });
-
     const completed = tasks.filter(task => task.done).length;
-
     document.getElementById("total").textContent = tasks.length;
     document.getElementById("pending").textContent =
         tasks.length - completed;
     document.getElementById("completed").textContent = completed;
 }
-
 document.querySelectorAll(".filter-btn").forEach(button => {
     button.addEventListener("click", () => {
         filter = button.dataset.filter;
-
         document.querySelectorAll(".filter-btn").forEach(btn => {
             btn.classList.toggle("active", btn === button);
         });
-
         renderTasks();
     });
 });
-
 document.getElementById("clear-done").addEventListener("click", () => {
     tasks = tasks.filter(task => !task.done);
     saveTasks();
     renderTasks();
 });
-
 // Verifica os lembretes periodicamente enquanto o site está aberto.
 renderTasks();
 checkReminders();
 setInterval(checkReminders, 1000);
 </script>
-
 </body>
 </html>
-```
